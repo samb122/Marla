@@ -1,456 +1,138 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Your Name | Portfolio</title>
-  <meta name="description" content="Portfolio site hosted on GitHub Pages." />
+  <meta charset="UTF-8" />
+  <title>Happy Valentine’s Day 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
-    :root{
-      --bg:#0b1020;
-      --card:#121a33;
-      --card2:#0f1630;
-      --text:#e9ecf5;
-      --muted:#b8c0d9;
-      --accent:#7c5cff;
-      --accent2:#2dd4bf;
-      --border:rgba(255,255,255,.10);
-      --shadow: 0 14px 40px rgba(0,0,0,.35);
-      --radius: 18px;
-      --max: 1080px;
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,92,255,.22), transparent 60%),
-                  radial-gradient(900px 500px at 90% 0%, rgba(45,212,191,.18), transparent 55%),
-                  var(--bg);
-      color:var(--text);
-      line-height:1.55;
-    }
-    a{color:inherit}
-    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 64px;}
-    header{
-      position:sticky; top:0; z-index:10;
-      backdrop-filter: blur(10px);
-      background: rgba(11,16,32,.70);
-      border-bottom:1px solid var(--border);
-    }
-    .nav{
-      max-width:var(--max); margin:0 auto;
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 18px;
-    }
-    .brand{
-      display:flex; gap:10px; align-items:center; text-decoration:none;
-      font-weight:800; letter-spacing:.2px;
-    }
-    .dot{
-      width:12px; height:12px; border-radius:99px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 0 6px rgba(124,92,255,.12);
-    }
-    .navlinks{display:flex; gap:10px; flex-wrap:wrap}
-    .pill{
-      text-decoration:none;
-      padding:9px 12px;
-      border:1px solid var(--border);
-      border-radius:999px;
-      color:var(--text);
-      background: rgba(255,255,255,.04);
-      transition:.18s transform, .18s background, .18s border-color;
-      font-weight:600;
-      font-size:14px;
-    }
-    .pill:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.07)}
-    .hero{
-      margin-top:18px;
-      padding:26px;
-      border:1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border-radius:var(--radius);
-      box-shadow: var(--shadow);
-    }
-    .hero-grid{display:grid; grid-template-columns: 1.25fr .75fr; gap:18px}
-    @media (max-width: 860px){ .hero-grid{grid-template-columns:1fr} }
-    h1{margin:0 0 10px; font-size:38px; line-height:1.1}
-    .sub{color:var(--muted); margin:0 0 18px; font-size:16px}
-    .cta-row{display:flex; flex-wrap:wrap; gap:10px}
-    .btn{
-      border:0;
-      cursor:pointer;
-      font-weight:800;
-      padding:11px 14px;
-      border-radius:12px;
-      color:var(--text);
-      background: linear-gradient(135deg, var(--accent), #5a8bff);
-      box-shadow: 0 10px 22px rgba(124,92,255,.22);
-      transition:.18s transform, .18s filter;
-      text-decoration:none;
-      display:inline-flex; align-items:center; gap:10px;
-    }
-    .btn:hover{transform:translateY(-1px); filter:brightness(1.03)}
-    .btn.secondary{
-      background: rgba(255,255,255,.06);
-      border:1px solid var(--border);
-      box-shadow:none;
-      font-weight:700;
-    }
-    .card{
-      border:1px solid var(--border);
-      background: rgba(18,26,51,.55);
-      border-radius:var(--radius);
-      padding:16px;
-    }
-    .card h3{margin:0 0 6px}
-    .card p{margin:0; color:var(--muted)}
-    .section{
-      margin-top:28px;
-      padding-top:14px;
-    }
-    .section-title{
-      display:flex; align-items:end; justify-content:space-between;
-      gap:12px; flex-wrap:wrap;
-      margin:0 0 12px;
-    }
-    .section-title h2{margin:0; font-size:24px}
-    .hint{color:var(--muted); font-size:14px; margin:0}
-    .gallery{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:12px;
-    }
-    @media (max-width: 860px){ .gallery{grid-template-columns: repeat(2, 1fr)} }
-    @media (max-width: 520px){ .gallery{grid-template-columns: 1fr} }
-    .thumb{
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      border-radius:16px;
-      overflow:hidden;
-      transition:.18s transform, .18s border-color;
-      cursor:pointer;
-      display:flex; flex-direction:column;
-    }
-    .thumb:hover{transform:translateY(-2px); border-color:rgba(255,255,255,.22)}
-    .thumb img{
-      width:100%;
-      height:190px;
-      object-fit:cover;
-      display:block;
-    }
-    .thumb .cap{
-      padding:10px 12px 12px;
-      font-weight:800;
-      font-size:14px;
-    }
-    .thumb .cap span{
-      display:block;
-      font-weight:600;
-      color:var(--muted);
-      font-size:12px;
-      margin-top:2px;
-    }
-    .buttons-grid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:10px;
-    }
-    @media (max-width: 860px){ .buttons-grid{grid-template-columns: repeat(2, 1fr)} }
-    @media (max-width: 520px){ .buttons-grid{grid-template-columns: 1fr} }
 
-    /* Modal (Lightbox) */
-    .modal{
-      position:fixed; inset:0;
-      background: rgba(0,0,0,.72);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
-      z-index:999;
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      padding: 40px 30px;
+      max-width: 420px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(8px);
     }
-    .modal.open{display:flex}
-    .modal-box{
-      width:min(980px, 100%);
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(18,26,51,.92);
-      border-radius:20px;
-      overflow:hidden;
-      box-shadow: 0 24px 70px rgba(0,0,0,.55);
+
+    h1 {
+      font-size: 2.4rem;
+      margin-bottom: 10px;
     }
-    .modal-top{
-      display:flex; justify-content:space-between; align-items:center;
-      padding:12px 14px;
-      border-bottom:1px solid rgba(255,255,255,.12);
-      gap:10px;
+
+    h2 {
+      font-weight: 500;
+      margin-top: 0;
+      opacity: 0.9;
     }
-    .modal-title{
-      font-weight:900;
-      font-size:14px;
-      color:var(--text);
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
+
+    .heart {
+      font-size: 4rem;
+      margin: 20px 0;
+      animation: pulse 1.5s infinite;
     }
-    .icon-btn{
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      color:var(--text);
-      border-radius:12px;
-      padding:8px 10px;
-      cursor:pointer;
-      font-weight:900;
+
+    p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin: 20px 0;
     }
-    .modal-img{
-      width:100%;
-      max-height:74vh;
-      object-fit:contain;
-      background: rgba(0,0,0,.20);
-      display:block;
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 25px;
     }
-    footer{
-      margin-top:38px;
-      color:var(--muted);
-      font-size:14px;
-      text-align:center;
+
+    button {
+      background: #fff;
+      color: #ff4d6d;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
     }
-    .divider{
-      height:1px;
-      background: rgba(255,255,255,.10);
-      margin:18px 0;
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .hidden-message {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    footer {
+      margin-top: 25px;
+      font-size: 0.85rem;
+      opacity: 0.85;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="nav">
-      <a class="brand" href="#top">
-        <span class="dot"></span>
-        <span>Your Name</span>
-      </a>
-      <nav class="navlinks">
-        <a class="pill" href="#buttons">Buttons</a>
-        <a class="pill" href="#projects">Projects</a>
-        <a class="pill" href="#screenshots">Screenshots</a>
-        <a class="pill" href="#contact">Contact</a>
-      </nav>
+  <div class="card">
+    <h1>Happy Valentine’s Day 💘</h1>
+    <h2>To Someone Very Special</h2>
+
+    <div class="heart">❤️</div>
+
+    <p>
+      Today is a reminder to celebrate love, kindness,
+      and all the little moments that make life sweeter.
+    </p>
+
+    <div class="buttons">
+      <button onclick="showMessage()">Open My Heart 💌</button>
+      <button onclick="changeHeart()">More Love 💕</button>
     </div>
-  </header>
 
-  <main class="wrap" id="top">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-grid">
-        <div>
-          <h1>Portfolio with Clickable Buttons → Images</h1>
-          <p class="sub">
-            Replace the image filenames in this page with your own, upload them to <b>assets/images/</b>,
-            and your buttons will jump to each image section.
-          </p>
-
-          <div class="cta-row">
-            <a class="btn" href="#buttons">View Image Buttons</a>
-            <a class="btn secondary" href="#screenshots">Go to Gallery</a>
-            <a class="btn secondary" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Quick Setup</h3>
-          <p>1) Create <b>assets/images</b> folder</p>
-          <p>2) Upload your images</p>
-          <p>3) Update filenames below</p>
-          <div class="divider"></div>
-          <p><b>Tip:</b> Buttons scroll to sections; clicking thumbnails opens a lightbox.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- BUTTONS THAT LEAD TO IMAGES -->
-    <section class="section" id="buttons">
-      <div class="section-title">
-        <h2>Clickable Buttons</h2>
-        <p class="hint">Each button jumps to an image section below.</p>
-      </div>
-
-      <div class="buttons-grid">
-        <a class="btn secondary" href="#img-road-rage">Road Rage Screenshot</a>
-        <a class="btn secondary" href="#img-database">Database ERD</a>
-        <a class="btn secondary" href="#img-circuit">Logic Circuit</a>
-        <a class="btn secondary" href="#img-project4">Project 4</a>
-        <a class="btn secondary" href="#img-project5">Project 5</a>
-        <a class="btn secondary" href="#img-project6">Project 6</a>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section class="section" id="projects">
-      <div class="section-title">
-        <h2>Projects</h2>
-        <p class="hint">Add links to repos, demos, docs, etc.</p>
-      </div>
-
-      <div class="gallery">
-        <div class="card">
-          <h3>Project: Road Rage (Java)</h3>
-          <p>MVC simulation, JUnit tests, clean OOP design.</p>
-        </div>
-        <div class="card">
-          <h3>Project: Database Design</h3>
-          <p>ER modeling, normalization, schema mapping.</p>
-        </div>
-        <div class="card">
-          <h3>Project: Digital Logic</h3>
-          <p>Truth tables → gate-level circuits.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- IMAGE SECTIONS -->
-    <section class="section" id="screenshots">
-      <div class="section-title">
-        <h2>Screenshots Gallery</h2>
-        <p class="hint">Click any image to open it in a lightbox.</p>
-      </div>
-
-      <div class="gallery">
-        <!-- Replace src with your real file names -->
-        <div class="thumb" id="img-road-rage"
-             data-title="Road Rage Screenshot"
-             data-full="assets/images/road-rage.png">
-          <img src="assets/images/road-rage.png" alt="Road Rage screenshot">
-          <div class="cap">Road Rage <span>assets/images/road-rage.png</span></div>
-        </div>
-
-        <div class="thumb" id="img-database"
-             data-title="Database ER Diagram"
-             data-full="assets/images/database-erd.png">
-          <img src="assets/images/database-erd.png" alt="Database ERD">
-          <div class="cap">Database ERD <span>assets/images/database-erd.png</span></div>
-        </div>
-
-        <div class="thumb" id="img-circuit"
-             data-title="Logic Circuit"
-             data-full="assets/images/logic-circuit.png">
-          <img src="assets/images/logic-circuit.png" alt="Logic circuit">
-          <div class="cap">Logic Circuit <span>assets/images/logic-circuit.png</span></div>
-        </div>
-
-        <div class="thumb" id="img-project4"
-             data-title="Project 4"
-             data-full="assets/images/project-4.png">
-          <img src="assets/images/project-4.png" alt="Project 4 image">
-          <div class="cap">Project 4 <span>assets/images/project-4.png</span></div>
-        </div>
-
-        <div class="thumb" id="img-project5"
-             data-title="Project 5"
-             data-full="assets/images/project-5.png">
-          <img src="assets/images/project-5.png" alt="Project 5 image">
-          <div class="cap">Project 5 <span>assets/images/project-5.png</span></div>
-        </div>
-
-        <div class="thumb" id="img-project6"
-             data-title="Project 6"
-             data-full="assets/images/project-6.png">
-          <img src="assets/images/project-6.png" alt="Project 6 image">
-          <div class="cap">Project 6 <span>assets/images/project-6.png</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="section" id="contact">
-      <div class="section-title">
-        <h2>Contact</h2>
-        <p class="hint">Update these links with yours.</p>
-      </div>
-
-      <div class="gallery">
-        <a class="card" href="mailto:you@example.com" style="text-decoration:none">
-          <h3>Email</h3>
-          <p>you@example.com</p>
-        </a>
-        <a class="card" href="https://www.linkedin.com/" target="_blank" rel="noopener" style="text-decoration:none">
-          <h3>LinkedIn</h3>
-          <p>your-linkedin</p>
-        </a>
-        <a class="card" href="https://github.com/" target="_blank" rel="noopener" style="text-decoration:none">
-          <h3>GitHub</h3>
-          <p>your-github</p>
-        </a>
-      </div>
-    </section>
+    <div class="hidden-message" id="message">
+      You make every day brighter just by being you 💖
+    </div>
 
     <footer>
-      <div class="divider"></div>
-      <div>© <span id="year"></span> Your Name · Hosted on GitHub Pages</div>
+      Made with ❤️ on GitHub Pages
     </footer>
-  </main>
-
-  <!-- MODAL -->
-  <div class="modal" id="modal" aria-hidden="true">
-    <div class="modal-box" role="dialog" aria-modal="true" aria-label="Image viewer">
-      <div class="modal-top">
-        <div class="modal-title" id="modalTitle">Image</div>
-        <div style="display:flex; gap:8px; align-items:center;">
-          <a class="icon-btn" id="openNewTab" href="#" target="_blank" rel="noopener">Open</a>
-          <button class="icon-btn" id="closeBtn" type="button">Close</button>
-        </div>
-      </div>
-      <img class="modal-img" id="modalImg" alt="Full size preview" />
-    </div>
   </div>
 
   <script>
-    // Footer year
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Lightbox modal
-    const modal = document.getElementById("modal");
-    const modalImg = document.getElementById("modalImg");
-    const modalTitle = document.getElementById("modalTitle");
-    const openNewTab = document.getElementById("openNewTab");
-    const closeBtn = document.getElementById("closeBtn");
-
-    function openModal(title, src){
-      modal.classList.add("open");
-      modal.setAttribute("aria-hidden", "false");
-      modalTitle.textContent = title || "Image";
-      modalImg.src = src;
-      openNewTab.href = src;
-      // prevent background scroll
-      document.body.style.overflow = "hidden";
+    function showMessage() {
+      document.getElementById("message").style.display = "block";
     }
 
-    function closeModal(){
-      modal.classList.remove("open");
-      modal.setAttribute("aria-hidden", "true");
-      modalImg.src = "";
-      document.body.style.overflow = "";
+    function changeHeart() {
+      const hearts = ["❤️", "💖", "💘", "💕", "💞"];
+      document.querySelector(".heart").textContent =
+        hearts[Math.floor(Math.random() * hearts.length)];
     }
-
-    document.querySelectorAll(".thumb").forEach(card => {
-      card.addEventListener("click", () => {
-        const title = card.getAttribute("data-title");
-        const src = card.getAttribute("data-full");
-        openModal(title, src);
-      });
-    });
-
-    closeBtn.addEventListener("click", closeModal);
-
-    modal.addEventListener("click", (e) => {
-      // click outside the box closes
-      if (e.target === modal) closeModal();
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeModal();
-    });
   </script>
 </body>
 </html>
